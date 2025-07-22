@@ -1,7 +1,10 @@
 // logic to render flower cards and handle cart interactions
 document.addEventListener('DOMContentLoaded', () => {
   const flowerContainer = document.getElementById('flower-container');
-  const cart = new Set(); //Stores cart item IDs
+
+  //Load cart from previous session or initialize empty
+  const savedCart = JSON.parse(localStorage.getItem('cart')) || [];
+  const cart = new Set(savedCart); //Stores cart item IDs
 
   flowerInventory.forEach(flower => {
     // Create a card for each flower
@@ -53,6 +56,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const toggleCartButton = flowerCard.querySelector('.toggle-cart');
     const cartBadge = flowerCard.querySelector('.cart-icon');
 
+    //Ensure correct visual state on initial load
+    if (cart.has(flower.id)) {
+      toggleCartButton.textContent = 'Remove from Cart';
+      cartBadge.style.display = "flex";
+      setTimeout(() => cartBadge.classList.add('visible'), 10); // Trigger CSS animation
+    } else {
+      toggleCartButton.textContent = 'Add to Cart';
+      cartBadge.style.display = "none";
+    }
+
     //Toggle item in/out of cart on click
     toggleCartButton.addEventListener('click', () => {
       if (cart.has(flower.id)) {
@@ -67,6 +80,9 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleCartButton.textContent = 'Remove from Cart';
         
       }
+
+      // Save updated cart to localStorage
+      localStorage.setItem('cart', JSON.stringify([...cart]));
 
       // Refresh star states on re-render (optional but good if rating ever changes dynamically)
      flowerCard.querySelectorAll('.star').forEach((img, idx) =>
