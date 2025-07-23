@@ -41,8 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
     flowerCard.innerHTML = `
     <div class="img-wrapper">
         <img src="${flower.image}" alt="${flower.name}" />
-        <button class="toggle-cart" aria-label="${cart.has(flower.id) ? 'Remove from Cart' : 'Add to Cart'}">
-          ${cart.has(flower.id) ? 'Remove from Cart' : 'Add to Cart'}
+        <button class="toggle-cart" aria-label="${cart.has(flower.id) ? 'Remove from Cart' : 'Add to cart'}">
+          ${cart.has(flower.id) ? 'Remove from Cart' : 'Add to cart'}
         </button>
     </div>
     <div class="cart-icon" style="display: ${cart.has(flower.id) ? 'flex' : 'none'}">In Cart</div>
@@ -58,11 +58,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //Ensure correct visual state on initial load
     if (cart.has(flower.id)) {
-      toggleCartButton.textContent = 'Remove from Cart';
+      toggleCartButton.innerHTML = 'Remove from Cart';
       cartBadge.style.display = "flex";
       setTimeout(() => cartBadge.classList.add('visible'), 10); // Trigger CSS animation
     } else {
-      toggleCartButton.textContent = 'Add to Cart';
+      toggleCartButton.innerHTML = 'Add to cart';
       cartBadge.style.display = "none";
     }
 
@@ -70,14 +70,14 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleCartButton.addEventListener('click', () => {
       if (cart.has(flower.id)) {
         cart.delete(flower.id);
-        toggleCartButton.textContent = 'Add to Cart';
+        toggleCartButton.innerHTML = 'Add to cart';
         cartBadge.classList.remove('visible');
         setTimeout(() => (cartBadge.style.display = "none"), 300); // Delay hides after animation
       } else {
         cart.add(flower.id);
         cartBadge.style.display = "flex";
         setTimeout(() => cartBadge.classList.add('visible'), 10); // Trigger CSS animation
-        toggleCartButton.textContent = 'Remove from Cart';
+        toggleCartButton.innerHTML = 'Remove from Cart';
         
       }
 

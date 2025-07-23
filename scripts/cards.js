@@ -7,20 +7,20 @@ const flowerInventory = [
     name: "Blue Flower",
     price: 80.00,
     image: "assets/blue-flower.png",
-    rating: 4.5
+    rating: 4
     }, 
     {
         id: 2,
     name: "Orange Flower",
     price: 17.60,
     image: "assets/orange-flower.png",
-    rating: 3.5
+    rating: 3
     },
     {
         id: 3,
     name: "Pink Flower",
     price: 40.00,
     image: "assets/pink-flower.png",
-    rating: 2.5
+    rating: 5
     }
 ];

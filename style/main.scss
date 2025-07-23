@@ -2,7 +2,7 @@
 
 body {
     margin: 0;
-    font-family: "Segoe UI", sans-serif;
+    font-family: 'Roboto', sans-serif;
     background-color: $grey;
     color: $text-dark;
 }
@@ -19,18 +19,21 @@ h1 {
 .cards-grid {
     //Flexible grid layout for flower cards
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
     gap: 1.5rem;
-    max-width: 900px;
+    max-width: 1070px;
     margin: 0 auto;
 }
 
 .card {
     //Main card styling
+    min-width: 300px;
+    flex-grow: 0;
+    flex-shrink: 0;
     background-color: white;
     border-radius: $radius;
     box-shadow: $shadow;
-    padding: 1.25rem;
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -81,13 +84,18 @@ h1 {
 
 
     h2 {
-        font-size: 1.25rem;
-        margin: 0.25rem 0;
+        font-size: 1.1rem;
+        margin: 0.1rem 0 0rem 0;
+        font-weight: 550;
+        color: $title-color;
     }
 
     .price {
-        font-weight: bold;
-        margin: 0.5rem 0;
+        font-size: 1.1rem;
+        font-weight: normal;
+        margin: 0.2rem 0 0;
+        font-weight: 100;
+        color: $price-color;
     }
 
     .rating {
@@ -96,17 +104,18 @@ h1 {
         justify-content: center;
         gap: 4px;
         margin-top: 4px;
+        margin-bottom: 6px;
 
         .star-wrapper {
             //Holds individual stars
             position: relative;
-            width: 16px;
-            height: 16px;
+            width: 11px;
+            height: 11px;
 
             .star {
                 width: 100%;
                 height: 100%;
-                opacity: 0.3;
+                opacity: 0.5;
             }
 
             &.full .star {
@@ -124,7 +133,7 @@ h1 {
                 .fill-half {
                     //The overlaying clipped star
                     position: absolute;
-                    top: 1px;
+                    top: 4px;
                     left: 0;
                     width: 100%;
                     height: 100%;
@@ -143,7 +152,7 @@ h1 {
         width: 100%;
         height: 1px;
         background-color: $divider;
-        margin: 12px 0;
+        margin: 12px 0 .5rem;
     }
 
 }
@@ -156,8 +165,10 @@ h1 {
     width: 100%;
 
     img {
+        height: auto;
         display: block;
         width: 100%;
+        aspect-ratio: 1 / 1;
         border-radius: $radius;
         transition: opacity 0.3s ease;
     }
@@ -176,8 +187,16 @@ h1 {
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.3s ease;
-        font-weight: bold;
+        font-weight: normal;
+        font-family: 'Roboto', sans-serif;
         cursor: pointer;
+        white-space: normal;
+        text-align: center;
+        line-height: 1.2;
+
+        span {
+            display: block; // Allow line breaks
+        }
     }
 
     &:hover {
